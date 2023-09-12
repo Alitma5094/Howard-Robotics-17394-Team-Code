@@ -13,6 +13,13 @@ enum class Motors {
     BottomRight,
 }
 
+enum class DiagnalDirection {
+    ForwardLeft,
+    ForwardRight,
+    BackwardLeft,
+    BackwardRight,
+}
+
 class Robot(private val opMode: OpMode) {
     lateinit var motors: HashMap<Motors, DcMotor>
 
@@ -73,6 +80,21 @@ class Robot(private val opMode: OpMode) {
 
         setMotorsPower(0.0, Motors.TopLeft, Motors.TopRight, Motors.BottomLeft, Motors.BottomRight)
         setMotorsMode(DcMotor.RunMode.RUN_USING_ENCODER, Motors.TopLeft, Motors.TopRight, Motors.BottomLeft, Motors.BottomRight)
+    }
+
+    fun turnByDegrees(degrees: Double, power: Double = DEFAULT_MOTOR_POWER): Unit {
+        throw NotImplementedError(message = "This is not implemented yet.")
+    }
+    fun moveDiagnalByTime(time: Double, direction: DiagnalDirection, power: Double = DEFAULT_MOTOR_POWER): Unit {
+        if (direction == DiagnalDirection.ForwardLeft) {
+            throw NotImplementedError(message = "This is not implemented yet.")
+        } else if (direction == DiagnalDirection.ForwardRight) {
+            throw NotImplementedError(message = "This is not implemented yet.")
+        } else if (direction == DiagnalDirection.BackwardLeft) {
+            throw NotImplementedError(message = "This is not implemented yet.")
+        } else {
+            throw NotImplementedError(message = "This is not implemented yet.")
+        }
     }
 
     companion object {
