@@ -32,10 +32,6 @@ package org.firstinspires.ftc.robotcontroller.external.samples;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-<<<<<<< HEAD
-import java.util.List;
-=======
->>>>>>> upstream/master
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.CameraName;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -44,15 +40,10 @@ import org.firstinspires.ftc.vision.VisionPortal.CameraState;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
-<<<<<<< HEAD
-/**
- * This 2023-2024 OpMode illustrates the basics of AprilTag recognition and pose estimation, using
-=======
 import java.util.List;
 
 /*
  * This OpMode illustrates the basics of AprilTag recognition and pose estimation, using
->>>>>>> upstream/master
  * two webcams.
  *
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
@@ -62,11 +53,7 @@ import java.util.List;
 @Disabled
 public class ConceptAprilTagSwitchableCameras extends LinearOpMode {
 
-<<<<<<< HEAD
-    /**
-=======
     /*
->>>>>>> upstream/master
      * Variables used for switching cameras.
      */
     private WebcamName webcam1, webcam2;
@@ -74,20 +61,12 @@ public class ConceptAprilTagSwitchableCameras extends LinearOpMode {
     private boolean oldRightBumper;
 
     /**
-<<<<<<< HEAD
-     * {@link #aprilTag} is the variable to store our instance of the AprilTag processor.
-=======
      * The variable to store our instance of the AprilTag processor.
->>>>>>> upstream/master
      */
     private AprilTagProcessor aprilTag;
 
     /**
-<<<<<<< HEAD
-     * {@link #visionPortal} is the variable to store our instance of the vision portal.
-=======
      * The variable to store our instance of the vision portal.
->>>>>>> upstream/master
      */
     private VisionPortal visionPortal;
 
@@ -152,11 +131,7 @@ public class ConceptAprilTagSwitchableCameras extends LinearOpMode {
     }   // end method initAprilTag()
 
     /**
-<<<<<<< HEAD
-     * Function to add telemetry about camera switching.
-=======
      * Add telemetry about camera switching.
->>>>>>> upstream/master
      */
     private void telemetryCameraSwitching() {
 
@@ -171,11 +146,7 @@ public class ConceptAprilTagSwitchableCameras extends LinearOpMode {
     }   // end method telemetryCameraSwitching()
 
     /**
-<<<<<<< HEAD
-     * Function to add telemetry about AprilTag detections.
-=======
      * Add telemetry about AprilTag detections.
->>>>>>> upstream/master
      */
     private void telemetryAprilTag() {
 
@@ -203,11 +174,7 @@ public class ConceptAprilTagSwitchableCameras extends LinearOpMode {
     }   // end method telemetryAprilTag()
 
     /**
-<<<<<<< HEAD
-     * Function to set the active camera according to input from the gamepad.
-=======
      * Set the active camera according to input from the gamepad.
->>>>>>> upstream/master
      */
     private void doCameraSwitching() {
         if (visionPortal.getCameraState() == CameraState.STREAMING) {

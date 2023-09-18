@@ -40,15 +40,10 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.VisionPortal.CameraState;
 import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
-<<<<<<< HEAD
-/**
- * This 2023-2024 OpMode illustrates the basics of TensorFlow Object Detection, using
-=======
 import java.util.List;
 
 /*
  * This OpMode illustrates the basics of TensorFlow Object Detection, using
->>>>>>> upstream/master
  * two webcams.
  *
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
@@ -66,20 +61,12 @@ public class ConceptTensorFlowObjectDetectionSwitchableCameras extends LinearOpM
     private boolean oldRightBumper;
 
     /**
-<<<<<<< HEAD
-     * {@link #tfod} is the variable to store our instance of the TensorFlow Object Detection processor.
-=======
      * The variable to store our instance of the TensorFlow Object Detection processor.
->>>>>>> upstream/master
      */
     private TfodProcessor tfod;
 
     /**
-<<<<<<< HEAD
-     * {@link #visionPortal} is the variable to store our instance of the vision portal.
-=======
      * The variable to store our instance of the vision portal.
->>>>>>> upstream/master
      */
     private VisionPortal visionPortal;
 
@@ -144,11 +131,7 @@ public class ConceptTensorFlowObjectDetectionSwitchableCameras extends LinearOpM
     }   // end method initTfod()
 
     /**
-<<<<<<< HEAD
-     * Function to add telemetry about camera switching.
-=======
      * Add telemetry about camera switching.
->>>>>>> upstream/master
      */
     private void telemetryCameraSwitching() {
         if (visionPortal.getActiveCamera().equals(webcam1)) {
@@ -161,11 +144,7 @@ public class ConceptTensorFlowObjectDetectionSwitchableCameras extends LinearOpM
     }   // end method telemetryCameraSwitching()
 
     /**
-<<<<<<< HEAD
-     * Function to add telemetry about TensorFlow Object Detection (TFOD) recognitions.
-=======
      * Add telemetry about TensorFlow Object Detection (TFOD) recognitions.
->>>>>>> upstream/master
      */
     private void telemetryTfod() {
 
@@ -186,11 +165,7 @@ public class ConceptTensorFlowObjectDetectionSwitchableCameras extends LinearOpM
     }   // end method telemetryTfod()
 
     /**
-<<<<<<< HEAD
-     * Function to set the active camera according to input from the gamepad.
-=======
      * Set the active camera according to input from the gamepad.
->>>>>>> upstream/master
      */
     private void doCameraSwitching() {
         if (visionPortal.getCameraState() == CameraState.STREAMING) {

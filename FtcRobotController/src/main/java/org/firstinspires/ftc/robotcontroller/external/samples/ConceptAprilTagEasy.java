@@ -32,25 +32,16 @@ package org.firstinspires.ftc.robotcontroller.external.samples;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-<<<<<<< HEAD
-import java.util.List;
-=======
->>>>>>> upstream/master
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
-<<<<<<< HEAD
-/**
- * This 2023-2024 OpMode illustrates the basics of AprilTag recognition and pose estimation, using
-=======
 import java.util.List;
 
 /*
  * This OpMode illustrates the basics of AprilTag recognition and pose estimation, using
->>>>>>> upstream/master
  * the easy way.
  *
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
@@ -63,20 +54,12 @@ public class ConceptAprilTagEasy extends LinearOpMode {
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
     /**
-<<<<<<< HEAD
-     * {@link #aprilTag} is the variable to store our instance of the AprilTag processor.
-=======
      * The variable to store our instance of the AprilTag processor.
->>>>>>> upstream/master
      */
     private AprilTagProcessor aprilTag;
 
     /**
-<<<<<<< HEAD
-     * {@link #visionPortal} is the variable to store our instance of the vision portal.
-=======
      * The variable to store our instance of the vision portal.
->>>>>>> upstream/master
      */
     private VisionPortal visionPortal;
 
@@ -136,11 +119,7 @@ public class ConceptAprilTagEasy extends LinearOpMode {
     }   // end method initAprilTag()
 
     /**
-<<<<<<< HEAD
-     * Function to add telemetry about AprilTag detections.
-=======
      * Add telemetry about AprilTag detections.
->>>>>>> upstream/master
      */
     private void telemetryAprilTag() {
 

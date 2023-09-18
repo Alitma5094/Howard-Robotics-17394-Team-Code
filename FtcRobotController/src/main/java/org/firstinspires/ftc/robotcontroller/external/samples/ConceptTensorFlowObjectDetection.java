@@ -32,25 +32,16 @@ package org.firstinspires.ftc.robotcontroller.external.samples;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-<<<<<<< HEAD
-import java.util.List;
-=======
->>>>>>> upstream/master
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
-<<<<<<< HEAD
-/**
- * This 2023-2024 OpMode illustrates the basics of TensorFlow Object Detection,
-=======
 import java.util.List;
 
 /*
  * This OpMode illustrates the basics of TensorFlow Object Detection,
->>>>>>> upstream/master
  * including Java Builder structures for specifying Vision parameters.
  *
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
@@ -63,20 +54,12 @@ public class ConceptTensorFlowObjectDetection extends LinearOpMode {
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
     /**
-<<<<<<< HEAD
-     * {@link #tfod} is the variable to store our instance of the TensorFlow Object Detection processor.
-=======
      * The variable to store our instance of the TensorFlow Object Detection processor.
->>>>>>> upstream/master
      */
     private TfodProcessor tfod;
 
     /**
-<<<<<<< HEAD
-     * {@link #visionPortal} is the variable to store our instance of the vision portal.
-=======
      * The variable to store our instance of the vision portal.
->>>>>>> upstream/master
      */
     private VisionPortal visionPortal;
 
@@ -176,11 +159,7 @@ public class ConceptTensorFlowObjectDetection extends LinearOpMode {
     }   // end method initTfod()
 
     /**
-<<<<<<< HEAD
-     * Function to add telemetry about TensorFlow Object Detection (TFOD) recognitions.
-=======
      * Add telemetry about TensorFlow Object Detection (TFOD) recognitions.
->>>>>>> upstream/master
      */
     private void telemetryTfod() {
 

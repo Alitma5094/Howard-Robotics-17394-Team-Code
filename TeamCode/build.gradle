@@ -21,6 +21,9 @@ android {
     androidResources {
         noCompress 'tflite'
     }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 
     packagingOptions {
         jniLibs {

@@ -1,7 +1,4 @@
 package org.firstinspires.ftc.teamcode
-
-
-
 import com.qualcomm.robotcore.eventloop.opmode.OpMode
 import com.qualcomm.robotcore.hardware.*
 
@@ -13,7 +10,7 @@ enum class Motors {
     BottomRight,
 }
 
-enum class DiagnalDirection {
+enum class DiagonalDirection {
     ForwardLeft,
     ForwardRight,
     BackwardLeft,
@@ -82,18 +79,23 @@ class Robot(private val opMode: OpMode) {
         setMotorsMode(DcMotor.RunMode.RUN_USING_ENCODER, Motors.TopLeft, Motors.TopRight, Motors.BottomLeft, Motors.BottomRight)
     }
 
-    fun turnByDegrees(degrees: Double, power: Double = DEFAULT_MOTOR_POWER): Unit {
+    fun turnByDegrees(degrees: Double, power: Double = DEFAULT_MOTOR_POWER){
         throw NotImplementedError(message = "This is not implemented yet.")
     }
-    fun moveDiagnalByTime(time: Double, direction: DiagnalDirection, power: Double = DEFAULT_MOTOR_POWER): Unit {
-        if (direction == DiagnalDirection.ForwardLeft) {
-            throw NotImplementedError(message = "This is not implemented yet.")
-        } else if (direction == DiagnalDirection.ForwardRight) {
-            throw NotImplementedError(message = "This is not implemented yet.")
-        } else if (direction == DiagnalDirection.BackwardLeft) {
-            throw NotImplementedError(message = "This is not implemented yet.")
-        } else {
-            throw NotImplementedError(message = "This is not implemented yet.")
+    fun moveDiagonalByTime(time: Double, direction: DiagonalDirection, power: Double = DEFAULT_MOTOR_POWER){
+        when (direction) {
+            DiagonalDirection.ForwardLeft -> {
+                throw NotImplementedError(message = "This is not implemented yet.")
+            }
+            DiagonalDirection.ForwardRight -> {
+                throw NotImplementedError(message = "This is not implemented yet.")
+            }
+            DiagonalDirection.BackwardLeft -> {
+                throw NotImplementedError(message = "This is not implemented yet.")
+            }
+            else -> {
+                throw NotImplementedError(message = "This is not implemented yet.")
+            }
         }
     }
 

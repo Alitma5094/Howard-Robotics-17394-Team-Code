@@ -34,10 +34,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/master
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.controls.ExposureControl;
@@ -49,11 +45,7 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-<<<<<<< HEAD
-/**
-=======
 /*
->>>>>>> upstream/master
  * This OpMode illustrates using a camera to locate and drive towards a specific AprilTag.
  * The code assumes a basic two-wheel (Tank) Robot Drivetrain
  *
@@ -148,13 +140,6 @@ public class RobotAutoDriveToAprilTagTank extends LinearOpMode
             // Step through the list of detected tags and look for a matching tag
             List<AprilTagDetection> currentDetections = aprilTag.getDetections();
             for (AprilTagDetection detection : currentDetections) {
-<<<<<<< HEAD
-                if ((detection.metadata != null)
-                    && ((DESIRED_TAG_ID >= 0) || (detection.id == DESIRED_TAG_ID))  ){
-                    targetFound = true;
-                    desiredTag = detection;
-                    break;  // don't look any further.
-=======
                 if ((detection.metadata != null) &&
                     ((DESIRED_TAG_ID < 0) || (detection.id == DESIRED_TAG_ID))  ){
                     targetFound = true;
@@ -162,7 +147,6 @@ public class RobotAutoDriveToAprilTagTank extends LinearOpMode
                     break;  // don't look any further.
                 } else {
                     telemetry.addData("Unknown Target", "Tag ID %d is not in TagLibrary\n", detection.id);
->>>>>>> upstream/master
                 }
             }
 
@@ -173,11 +157,7 @@ public class RobotAutoDriveToAprilTagTank extends LinearOpMode
                 telemetry.addData("Range",  "%5.1f inches", desiredTag.ftcPose.range);
                 telemetry.addData("Bearing","%3.0f degrees", desiredTag.ftcPose.bearing);
             } else {
-<<<<<<< HEAD
-                telemetry.addData(">","Drive using joystick to find target\n");
-=======
                 telemetry.addData(">","Drive using joysticks to find valid target\n");
->>>>>>> upstream/master
             }
 
             // If Left Bumper is being pressed, AND we have found the desired target, Drive to target Automatically .
@@ -209,13 +189,9 @@ public class RobotAutoDriveToAprilTagTank extends LinearOpMode
 
     /**
      * Move robot according to desired axes motions
-<<<<<<< HEAD
-     * Positive X is forward
-=======
      * <p>
      * Positive X is forward
      * <p>
->>>>>>> upstream/master
      * Positive Yaw is counter-clockwise
      */
     public void moveRobot(double x, double yaw) {
