@@ -13,29 +13,26 @@ class FirstTeleOp : LinearOpMode() {
         telemetry.update()
         waitForStart()
 
-        while (opModeIsActive()) {
+        robot.moveByDistance(inches = 22.0, power = 0.5)
+        for (i in 1..3) {
+            robot.setMotorsPower(0.3, Motors.TopLeft)
+            robot.setMotorsPower(-0.3, Motors.TopRight)
+            robot.setMotorsPower(0.3, Motors.BottomLeft)
+            robot.setMotorsPower(-0.3, Motors.BottomRight)
+            Thread.sleep(3000)
+            robot.setMotorsPower(
+                0.0,
+                Motors.TopLeft,
+                Motors.TopRight,
+                Motors.BottomLeft,
+                Motors.BottomLeft
+            )
+            //check if cone there bruv
+            if(true) {
 
-            // Front - Back Movement
-            robot.setMotorsPower(gamepad1.left_stick_y.toDouble(), Motors.TopLeft)
-            robot.setMotorsPower(gamepad1.right_stick_y.toDouble(), Motors.TopRight)
-            robot.setMotorsPower(gamepad1.left_stick_y.toDouble(), Motors.BottomLeft)
-            robot.setMotorsPower(gamepad1.right_stick_y.toDouble(), Motors.BottomRight)
 
-            // Right Movement
-            if (gamepad1.right_trigger > 0) {
-                robot.setMotorsPower(-gamepad1.right_trigger.toDouble(), Motors.TopLeft)
-                robot.setMotorsPower(gamepad1.right_trigger.toDouble(), Motors.TopRight)
-                robot.setMotorsPower(gamepad1.right_trigger.toDouble(), Motors.BottomLeft)
-                robot.setMotorsPower(-gamepad1.right_trigger.toDouble(), Motors.BottomRight)
             }
-
-            // Left Movement
-            if (gamepad1.left_trigger > 0) {
-                robot.setMotorsPower(gamepad1.left_trigger.toDouble(), Motors.TopLeft)
-                robot.setMotorsPower(-gamepad1.left_trigger.toDouble(), Motors.TopRight)
-                robot.setMotorsPower(-gamepad1.left_trigger.toDouble(), Motors.BottomLeft)
-                robot.setMotorsPower(gamepad1.left_trigger.toDouble(), Motors.BottomRight)
-            }
+            Thread.sleep(3000)
         }
     }
 }
