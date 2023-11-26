@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp
 
 @Autonomous
-class FirstTurnAuto {
+class FirstTurnAuto : LinearOpMode() {
     private val robot = Robot(this)
 
     override fun runOpMode() {
