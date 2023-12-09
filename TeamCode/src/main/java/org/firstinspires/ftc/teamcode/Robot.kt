@@ -8,13 +8,8 @@ enum class Motors {
     TopRight,
     BottomLeft,
     BottomRight,
-}
-
-enum class DiagonalDirection {
-    ForwardLeft,
-    ForwardRight,
-    BackwardLeft,
-    BackwardRight,
+    ArmLeft,
+    ArmRight
 }
 
 class Robot(private val opMode: OpMode) {
@@ -29,18 +24,28 @@ class Robot(private val opMode: OpMode) {
             Motors.TopRight to hardwareMap.get(DcMotor::class.java, "topRight"),
             Motors.BottomLeft to hardwareMap.get(DcMotor::class.java, "bottomLeft"),
             Motors.BottomRight to hardwareMap.get(DcMotor::class.java, "bottomRight"),
+
+            Motors.ArmLeft to hardwareMap.get(DcMotor::class.java, "armLeft"),
+            Motors.ArmRight to hardwareMap.get(DcMotor::class.java, "armRight"),
         )
 
         motors[Motors.TopLeft]?.direction = DcMotorSimple.Direction.FORWARD
         motors[Motors.TopRight]?.direction = DcMotorSimple.Direction.REVERSE
         motors[Motors.BottomLeft]?.direction = DcMotorSimple.Direction.FORWARD
         motors[Motors.BottomRight]?.direction = DcMotorSimple.Direction.REVERSE
+
+        motors[Motors.ArmLeft]?.direction = DcMotorSimple.Direction.FORWARD
+        motors[Motors.ArmRight]?.direction = DcMotorSimple.Direction.FORWARD
     }
 
-    private fun setMotorsMode(mode: DcMotor.RunMode, vararg motors: Motors) {
+    fun setMotorsMode(mode: DcMotor.RunMode, vararg motors: Motors) {
         for (motor in motors) {
             this.motors[motor]?.mode = mode
         }
+    }
+
+    fun getMotorPos(motor: Motors): Int {
+        return this.motors[motor]!!.currentPosition
     }
 
     fun setMotorsPower(power: Double, vararg motors: Motors) {
@@ -49,7 +54,7 @@ class Robot(private val opMode: OpMode) {
         }
     }
 
-    private fun setMotorsTargetPos(position: Double, vararg motors: Motors) {
+    fun setMotorsTargetPos(position: Double, vararg motors: Motors) {
         for (motor in motors) {
             this.motors[motor]?.targetPosition = position.toInt()
         }
@@ -77,26 +82,6 @@ class Robot(private val opMode: OpMode) {
 
         setMotorsPower(0.0, Motors.TopLeft, Motors.TopRight, Motors.BottomLeft, Motors.BottomRight)
         setMotorsMode(DcMotor.RunMode.RUN_USING_ENCODER, Motors.TopLeft, Motors.TopRight, Motors.BottomLeft, Motors.BottomRight)
-    }
-
-    fun turnByDegrees(degrees: Double, power: Double = DEFAULT_MOTOR_POWER){
-        throw NotImplementedError(message = "This is not implemented yet.")
-    }
-    fun moveDiagonalByTime(time: Double, direction: DiagonalDirection, power: Double = DEFAULT_MOTOR_POWER){
-        when (direction) {
-            DiagonalDirection.ForwardLeft -> {
-                throw NotImplementedError(message = "This is not implemented yet.")
-            }
-            DiagonalDirection.ForwardRight -> {
-                throw NotImplementedError(message = "This is not implemented yet.")
-            }
-            DiagonalDirection.BackwardLeft -> {
-                throw NotImplementedError(message = "This is not implemented yet.")
-            }
-            else -> {
-                throw NotImplementedError(message = "This is not implemented yet.")
-            }
-        }
     }
 
     companion object {
