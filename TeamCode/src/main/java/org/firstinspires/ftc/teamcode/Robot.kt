@@ -18,6 +18,7 @@ enum class Motors {
 enum class Servos {
     Claw,
     Wrist,
+    Drone
 }
 
 class Robot(private val opMode: OpMode) {
@@ -48,7 +49,8 @@ class Robot(private val opMode: OpMode) {
 
         servos = hashMapOf(
                 Servos.Wrist to hardwareMap.get(Servo::class.java, "wrist"),
-                Servos.Claw to hardwareMap.get(Servo::class.java, "claw")
+                Servos.Claw to hardwareMap.get(Servo::class.java, "claw"),
+                Servos.Drone to hardwareMap.get(Servo::class.java, "drone")
         )
     }
 
@@ -95,6 +97,21 @@ class Robot(private val opMode: OpMode) {
         setMotorsTargetPos(-target, Motors.TopLeft, Motors.TopRight, Motors.BottomLeft, Motors.BottomRight)
         setMotorsPower(-power, Motors.TopRight, Motors.BottomRight)
         setMotorsPower(power, Motors.TopLeft, Motors.BottomLeft)
+        setMotorsMode(DcMotor.RunMode.RUN_TO_POSITION, Motors.TopLeft, Motors.TopRight, Motors.BottomLeft, Motors.BottomRight)
+
+        while (areAllMotorsBusy(Motors.TopLeft, Motors.TopRight, Motors.BottomLeft, Motors.BottomRight)) { }
+
+        setMotorsPower(0.0, Motors.TopLeft, Motors.TopRight, Motors.BottomLeft, Motors.BottomRight)
+        setMotorsMode(DcMotor.RunMode.RUN_USING_ENCODER, Motors.TopLeft, Motors.TopRight, Motors.BottomLeft, Motors.BottomRight)
+    }
+    fun moveByDistanceLat(inches: Double, power: Double = DEFAULT_MOTOR_POWER) {
+        val target = inches / (WHEEL_CIRCUMFERENCE / MOTOR_TICK_COUNT)
+
+        setMotorsMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER, Motors.TopLeft, Motors.BottomLeft, Motors.TopRight, Motors.BottomRight)
+
+        setMotorsTargetPos(-target, Motors.TopLeft, Motors.TopRight, Motors.BottomLeft, Motors.BottomRight)
+        setMotorsPower(-power, Motors.TopLeft, Motors.BottomRight)
+        setMotorsPower(power, Motors.TopRight, Motors.BottomLeft)
         setMotorsMode(DcMotor.RunMode.RUN_TO_POSITION, Motors.TopLeft, Motors.TopRight, Motors.BottomLeft, Motors.BottomRight)
 
         while (areAllMotorsBusy(Motors.TopLeft, Motors.TopRight, Motors.BottomLeft, Motors.BottomRight)) { }

@@ -3,18 +3,19 @@ package org.firstinspires.ftc.teamcode
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp
 import com.qualcomm.robotcore.hardware.DcMotor
+import com.qualcomm.robotcore.hardware.Servo
 
 @TeleOp
-class TankDriveTeleOp : LinearOpMode() {
+class ServoTest : LinearOpMode() {
     private val robot = Robot(this)
 
     override fun runOpMode() {
         robot.init()
 
-        var motorPosR = robot.getMotorPos(Motors.ArmRight).toDouble()
-        robot.setMotorsTargetPos(motorPosR, Motors.ArmRight)
-        robot.setMotorsPower(0.5, Motors.ArmRight)
-        robot.setMotorsMode(DcMotor.RunMode.RUN_TO_POSITION, Motors.ArmRight)
+//        var motorPosR = robot.getMotorPos(Motors.ArmRight).toDouble()
+//        robot.setMotorsTargetPos(motorPosR, Motors.ArmRight)
+//        robot.setMotorsPower(0.5, Motors.ArmRight)
+//        robot.setMotorsMode(DcMotor.RunMode.RUN_TO_POSITION, Motors.ArmRight)
 
 
         waitForStart()
@@ -23,28 +24,40 @@ class TankDriveTeleOp : LinearOpMode() {
         //ArmLeft = Base
 
 
-
-
+//        var motorPosL = robot.getMotorPos(Motors.ArmLeft).toDouble()
+/*        robot.setMotorsTargetPos(motorPosL, Motors.ArmLeft)
+        robot.setMotorsPower(0.0005, Motors.ArmLeft)
+        robot.setMotorsMode(DcMotor.RunMode.RUN_TO_POSITION, Motors.ArmLeft)
+*/
 
         while (opModeIsActive()) {
-            telemetry.addData("Status", robot.getMotorPos(Motors.ArmLeft).toDouble())
-            telemetry.update()
-            robot.setServoPoition(0.0, Servos.Drone)
-            //Actuate Arm Extension in both directions
-            if(gamepad2.start){
-                robot.setServoPoition(1.0, Servos.Drone)
-            }
-            if (gamepad2.right_stick_y.toDouble() < 0) {
-                motorPosR += 5
-            }
-            if (gamepad2.right_stick_y.toDouble() > 0) {
-                motorPosR -= 5
-            }
-            robot.setMotorsTargetPos(motorPosR, Motors.ArmRight)
+//            telemetry.addData("Status", robot.getMotorPos(Motors.ArmLeft).toDouble())
+//            telemetry.update()
+//            robot.setServoPoition(0.0, Servos.Drone)
+//            //Actuate Arm Extension in both directions
+//            if(gamepad2.start){
+//                robot.setServoPoition(1.0, Servos.Drone)
+//            }
+//            if (gamepad2.right_stick_y.toDouble() < 0) {
+//                motorPosR += 5
+//            }
+//            if (gamepad2.right_stick_y.toDouble() > 0) {
+//                motorPosR -= 5
+//            }
+//            robot.setMotorsTargetPos(motorPosR, Motors.ArmRight)
+            robot.setServoPoition(55.0, Servos.Drone)
 
+            //Actuate Arm Base in both directions
+//            if (gamepad2.left_stick_y.toDouble() < 0) {
+//                motorPosL += 5
+//            }
+//            if (gamepad2.left_stick_y.toDouble() > 0) {
+//                motorPosL -= 5
+//            }
+//            robot.setMotorsTargetPos(motorPosL, Motors.ArmLeft)
 
-            }
-            robot.setMotorsPower(-gamepad2.right_stick_y.toDouble()/2, Motors.ArmRight)
+//            robot.setMotorsPower(gamepad2.left_stick_y.toDouble()/2, Motors.ArmLeft)
+//            robot.setMotorsPower(-gamepad2.right_stick_y.toDouble()/2, Motors.ArmRight)
 
             //Forward/backward Movement
             robot.setMotorsPower(gamepad1.left_stick_y.toDouble(), Motors.TopLeft)
@@ -93,3 +106,4 @@ class TankDriveTeleOp : LinearOpMode() {
             }
         }
     }
+}
