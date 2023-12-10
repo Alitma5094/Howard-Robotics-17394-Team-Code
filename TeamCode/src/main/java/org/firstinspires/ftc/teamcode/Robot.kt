@@ -1,6 +1,9 @@
 package org.firstinspires.ftc.teamcode
 import com.qualcomm.robotcore.eventloop.opmode.OpMode
-import com.qualcomm.robotcore.hardware.*
+import com.qualcomm.robotcore.hardware.DcMotor
+import com.qualcomm.robotcore.hardware.DcMotorSimple
+import com.qualcomm.robotcore.hardware.HardwareMap
+import com.qualcomm.robotcore.hardware.Servo
 
 
 enum class Motors {
@@ -12,8 +15,14 @@ enum class Motors {
     ArmRight
 }
 
+enum class Servos {
+    Claw,
+    Wrist,
+}
+
 class Robot(private val opMode: OpMode) {
     lateinit var motors: HashMap<Motors, DcMotor>
+    lateinit var servos: HashMap<Servos, Servo>
 
     private val hardwareMap: HardwareMap
         get() = opMode.hardwareMap
@@ -36,6 +45,11 @@ class Robot(private val opMode: OpMode) {
 
         motors[Motors.ArmLeft]?.direction = DcMotorSimple.Direction.FORWARD
         motors[Motors.ArmRight]?.direction = DcMotorSimple.Direction.FORWARD
+
+        servos = hashMapOf(
+                Servos.Wrist to hardwareMap.get(Servo::class.java, "wrist"),
+                Servos.Claw to hardwareMap.get(Servo::class.java, "claw")
+        )
     }
 
     fun setMotorsMode(mode: DcMotor.RunMode, vararg motors: Motors) {
@@ -60,6 +74,11 @@ class Robot(private val opMode: OpMode) {
         }
     }
 
+    fun setServoPoition(position: Double, vararg servos: Servos) {
+        for (servo in servos) {
+            this.servos[servo]?.position = position.toDouble()
+        }
+    }
     private fun isMotorBusy(motor: Motors): Boolean {
         return motors[motor]?.mode == DcMotor.RunMode.RUN_TO_POSITION && motors[motor]?.isBusy!!
     }

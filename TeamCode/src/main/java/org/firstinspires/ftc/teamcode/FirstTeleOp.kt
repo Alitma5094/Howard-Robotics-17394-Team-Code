@@ -25,13 +25,9 @@ class FirstTeleOp : LinearOpMode() {
                 Motors.TopLeft,
                 Motors.TopRight,
                 Motors.BottomLeft,
-                Motors.BottomLeft
+                Motors.BottomRight,
             )
             //check if cone there bruv
-            if(true) {
-
-
-            }
             Thread.sleep(3000)
         }
     }

@@ -2,10 +2,9 @@ package org.firstinspires.ftc.teamcode
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp
 
 @Autonomous
-class FirstTurnAuto : LinearOpMode() {
+class FirstTurnAuto : LinearOpMode() { //this is importante dont delet
     private val robot = Robot(this)
 
     override fun runOpMode() {
@@ -14,10 +13,11 @@ class FirstTurnAuto : LinearOpMode() {
         while (opModeIsActive()) {
 
             // Front - Back Movement
-            robot.setMotorsPower(gamepad1.left_stick_y.toDouble(), Motors.TopLeft)
-            robot.setMotorsPower(gamepad1.right_stick_y.toDouble(), Motors.TopRight)
-            robot.setMotorsPower(gamepad1.left_stick_y.toDouble(), Motors.BottomLeft)
-            robot.setMotorsPower(gamepad1.right_stick_y.toDouble(), Motors.BottomRight)
+            robot.setMotorsPower(0.1, Motors.TopLeft)
+            robot.setMotorsPower(0.1, Motors.TopRight)
+            robot.setMotorsPower(0.1, Motors.BottomLeft)
+            robot.setMotorsPower(0.1, Motors.BottomRight)
+            Thread.sleep(1000)
 
             // Right Movement
             if (gamepad1.right_trigger > 0) {
@@ -34,6 +34,8 @@ class FirstTurnAuto : LinearOpMode() {
                 robot.setMotorsPower(-gamepad1.left_trigger.toDouble(), Motors.BottomLeft)
                 robot.setMotorsPower(gamepad1.left_trigger.toDouble(), Motors.BottomRight)
             }
+
+
         }
     }
 }
