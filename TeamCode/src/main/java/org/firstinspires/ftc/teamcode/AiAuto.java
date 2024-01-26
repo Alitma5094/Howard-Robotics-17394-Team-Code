@@ -1,8 +1,11 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
@@ -11,7 +14,7 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
 
-@TeleOp()
+@Autonomous()
 public class AiAuto extends LinearOpMode {
     private static final boolean USE_WEBCAM = false;  // true for webcam, false for phone camera
 
@@ -19,6 +22,10 @@ public class AiAuto extends LinearOpMode {
      * The variable to store our instance of the TensorFlow Object Detection processor.
      */
     private TfodProcessor tfod;
+    private double rotateSpeed = 0.5;
+    private double moveSpeed = 0.5;
+
+    private Robot robot = new Robot(this);
 
     /**
      * The variable to store our instance of the vision portal.
@@ -34,30 +41,36 @@ public class AiAuto extends LinearOpMode {
         telemetry.addData("DS preview on/off", "3 dots, Camera Stream");
         telemetry.addData(">", "Touch Play to start OpMode");
         telemetry.update();
-        waitForStart();
 
-        if (opModeIsActive()) {
-            while (opModeIsActive()) {
+        // Move Forward
+        robot.moveByDistance(12, moveSpeed);
 
-                telemetryTfod();
 
-                // Push telemetry to the Driver Station.
-                telemetry.update();
+        // Scan right spike mark
+        if (pixelIsPresent()) {
+            telemetry.addData("Pixel is found: ", "right");
+            dropPixel();
+        } else {
+            // Rotate 90 degrees left
+            robot.rotateBySeconds(5, rotateSpeed, this::sleep, "left");
+            if (pixelIsPresent()) {
+                telemetry.addData("Pixel is found: ", "front");
+                dropPixel();
+                // Rotate 90 degrees right
+                robot.rotateBySeconds(5, rotateSpeed, this::sleep, "right");
 
-                // Save CPU resources; can resume streaming when needed.
-                if (gamepad1.dpad_down) {
-                    visionPortal.stopStreaming();
-                } else if (gamepad1.dpad_up) {
-                    visionPortal.resumeStreaming();
-                }
+            } else {
+                // Rotate 180 degrees right
+                robot.rotateBySeconds(10, rotateSpeed, this::sleep, "right");
+                dropPixel();
+                robot.rotateBySeconds(5, rotateSpeed, this::sleep, "left");
 
-                // Share the CPU.
-                sleep(20);
             }
         }
 
-        // Save more CPU resources when camera is no longer needed.
+
         visionPortal.close();
+
 
     }   // end runOpMode()
 
@@ -90,14 +103,35 @@ public class AiAuto extends LinearOpMode {
 
         // Step through the list of recognitions and display info for each one.
         for (Recognition recognition : currentRecognitions) {
-            double x = (recognition.getLeft() + recognition.getRight()) / 2 ;
-            double y = (recognition.getTop()  + recognition.getBottom()) / 2 ;
+            double x = (recognition.getLeft() + recognition.getRight()) / 2;
+            double y = (recognition.getTop() + recognition.getBottom()) / 2;
 
-            telemetry.addData(""," ");
+            telemetry.addData("", " ");
             telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
             telemetry.addData("- Position", "%.0f / %.0f", x, y);
             telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
         }   // end for() loop
 
     }   // end method telemetryTfod()
+
+    private boolean pixelIsPresent() {
+        boolean found = false;
+        long startTime = System.currentTimeMillis();
+
+        while (System.currentTimeMillis() - startTime < 10000) {
+            List<Recognition> currentRecognitions = tfod.getRecognitions();
+            if (currentRecognitions.size() > 0) {
+                found = true;
+                break;
+            }
+        }
+
+        return found;
+    }
+
+    private void dropPixel() {
+
+    }
+
+
 }
