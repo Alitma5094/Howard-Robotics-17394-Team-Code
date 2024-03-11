@@ -15,7 +15,7 @@ public class FirstOpMode extends LinearOpMode {
     DcMotor armBase = hardwareMap.get(DcMotor.class, "armBase");
     DcMotor armExt = hardwareMap.get(DcMotor.class, "armExt");
     @Override
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException{
         Servo armWrist = hardwareMap.get(Servo.class, "wrist");
         double wristTgtPos = armWrist.getPosition();
 
@@ -30,33 +30,25 @@ public class FirstOpMode extends LinearOpMode {
         armExt.setTargetPosition(armExtPos);
         armExt.setPower(0.5);
         armExt.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
+double rX=0, rY=0,newX,newY;
         waitForStart();
 
         while (opModeIsActive()) {
-            //Forwards and Backwards movements
-            topLeftWheel.setPower(gamepad1.left_stick_y);
-            topRightWheel.setPower(-gamepad1.left_stick_y);
-            bottomLeftWheel.setPower(gamepad1.left_stick_y);
-            bottomRightWheel.setPower(-gamepad1.left_stick_y);
-            //Right Movement
+            //translational movement
+            Thread.sleep(5);//wait 5ms
+            
+             newX=0.95*(rX)+0.05*(gamepad1.right_stick_x);//5% smoothing every 5ms maybe try 1% later idk 
+             newY=0.95*(rY)+0.05*(gamepad1.right_stick_y);
+            
+            topLeftWheel.setPower((-newX+newY)/2);//averages the vector componets and does x and y plane motion
+            topRightWheel.setPower((newX-newY)/2);
+            bottomLeftWheel.setPower((-newX+newY)/2);
+            bottomRightWheel.setPower((newX-newY)/2);
+            
+            rX=newX;// updates old values for future smoothing
+            rY=newY;
 
-            do {
-                topLeftWheel.setPower(-gamepad1.left_stick_x);
-                bottomLeftWheel.setPower(gamepad1.left_stick_x);
-                topRightWheel.setPower(-gamepad1.left_stick_x);
-                bottomRightWheel.setPower(gamepad1.left_stick_x);
-            }
-            while(gamepad1.left_stick_x > 0);
-
-            //Left Movement
-            do {
-                topLeftWheel.setPower(-gamepad1.left_stick_x);
-                bottomLeftWheel.setPower(gamepad1.left_stick_x);
-                topRightWheel.setPower(-gamepad1.left_stick_x);
-                bottomRightWheel.setPower(gamepad1.left_stick_x);
-            }
-            while(gamepad1.left_stick_x < 0);
+            
             //Rotation
             if(gamepad1.left_trigger > 0){
                 topLeftWheel.setPower(gamepad1.left_trigger);
